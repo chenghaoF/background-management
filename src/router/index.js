@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import login from '../views/login/login.vue'
 
-const TEroutes = [
+const routes = [
   {
     path: '/login',
     name: 'login',
@@ -11,7 +11,7 @@ const TEroutes = [
 
 const router = createRouter({
   history: createWebHashHistory(),
-  TEroutes
+  routes
 })
 
 export default router
