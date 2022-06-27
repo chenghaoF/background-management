@@ -35,7 +35,7 @@
       <el-button
         type="primary"
         class="LoginButon"
-        @click="Login()"
+        @click="AddLogin()"
         :loading="loding"
         >登录</el-button
       >
@@ -45,10 +45,15 @@
 </template>
 
 <script setup>
+import util from '../../../utils/util.js'
+import unnitlogin from '../../api/login'
 // eslint-disable-next-line
+// import { deepCopy } from ''
+import md5 from 'md5'
 import { Avatar, Compass, View, Hide } from '@element-plus/icons-vue'
 import { reactive, ref } from 'vue'
 import { LoginRules } from './rules'
+// import md5 from 'md5'
 
 const loding = ref(false)
 
@@ -64,16 +69,27 @@ const UpdateVie = () => {
   // text.tt = text.tt === 'password' ? 'password' : 'text'
 }
 const Loginref = ref('Loginref')
-const Login = async () => {
-  loding.value = true
+const AddLogin = async () => {
+  // loding.value = true
   if (!Loginref.value) return
-  await Loginref.value.validate((valid) => {
+  await Loginref.value.validate(async (valid) => {
     if (valid) {
-      alert('登录')
-      loding.value = false
-    } else {
-      alert('11')
-      loding.value = false
+      const from = reactive({
+        username: '',
+        password: ''
+      })
+      from.username = LoginForm.username
+      from.password = util.deepCopy(LoginForm.password)
+      from.password = md5(from.password)
+      // console.log(from.password)
+      // console.log(LoginForm.password)
+      const penlogin = await unnitlogin.login(from)
+      console.log(penlogin)
+
+      // const
+      // console.log(penlogin)yt6
+      // o-
+      //  this.$router.push('/');
     }
   })
 }
