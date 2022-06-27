@@ -7,6 +7,7 @@
       class="LoginForm"
     >
       <h3 class="font">用户登录</h3>
+      <!-- <svg-icon className="svg-language" icon="language"></svg-icon> -->
       <h3 class="Translation">Translation</h3>
       <el-form-item prop="username">
         <el-input
@@ -31,9 +32,14 @@
           </template>
         </el-input>
       </el-form-item>
-      <el-button type="primary" class="LoginButon" @click="Login(Loginref)"
+      <el-button
+        type="primary"
+        class="LoginButon"
+        @click="Login()"
+        :loading="loding"
         >登录</el-button
       >
+      <!-- <svg-icon className="svg-language" icon="language"></svg-icon> -->
     </el-form>
   </div>
 </template>
@@ -41,8 +47,10 @@
 <script setup>
 // eslint-disable-next-line
 import { Avatar, Compass, View, Hide } from '@element-plus/icons-vue'
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 import { LoginRules } from './rules'
+
+const loding = ref(false)
 
 const LoginForm = reactive({
   username: '',
@@ -55,11 +63,17 @@ const UpdateVie = () => {
   text.tt = text.tt === 'password' ? 'text' : 'password'
   // text.tt = text.tt === 'password' ? 'password' : 'text'
 }
-const Login = async (Loginref) => {
-  if (!Loginref) return
-  await Loginref.validate((valid) => {
+const Loginref = ref('Loginref')
+const Login = async () => {
+  loding.value = true
+  if (!Loginref.value) return
+  await Loginref.value.validate((valid) => {
     if (valid) {
       alert('登录')
+      loding.value = false
+    } else {
+      alert('11')
+      loding.value = false
     }
   })
 }
