@@ -33,7 +33,7 @@ const styleExternalIcon = computed(() => {
 })
 
 const isExternal = computed(() => {
-  console.log(external(props.icon))
+  // console.log(external(props.icon))
   return external(props.icon)
 })
 

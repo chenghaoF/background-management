@@ -45,8 +45,10 @@
 </template>
 
 <script setup>
+import unsrouter from '../../router/index'
 import util from '../../../utils/util.js'
 import unnitlogin from '../../api/login'
+import { ElMessage } from 'element-plus'
 // eslint-disable-next-line
 // import { deepCopy } from ''
 import md5 from 'md5'
@@ -58,8 +60,8 @@ import { LoginRules } from './rules'
 const loding = ref(false)
 
 const LoginForm = reactive({
-  username: '',
-  password: ''
+  username: 'super-admin',
+  password: '123456'
 })
 const text = reactive({
   tt: 'password'
@@ -84,7 +86,19 @@ const AddLogin = async () => {
       // console.log(from.password)
       // console.log(LoginForm.password)
       const penlogin = await unnitlogin.login(from)
-      console.log(penlogin)
+      // console.log(penlogin)
+      if (penlogin.data.success === true) {
+        localStorage.setItem('token', penlogin.data.data.token)
+        unsrouter.push('/')
+        ElMessage.success(penlogin.data.message)
+      } else {
+        ElMessage.error(penlogin.data.message)
+        // ElMessage.error(penlogin.data.message)
+        // alert()
+      }
+
+      // if (penlogin.data.success == true) {
+      // }
 
       // const
       // console.log(penlogin)yt6

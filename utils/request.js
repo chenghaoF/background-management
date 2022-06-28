@@ -16,7 +16,10 @@ service.interceptors.request.use(
   (config) => {
     // 打开loading加载
     loading.open()
+    const token = localStorage.getItem('token')
 
+    config.headers.Authorization = token
+    // console.log(config.headers.Authorization)
     // 调用接口要传的参数
     const { icode, time } = getTestICode()
     config.headers.icode = icode

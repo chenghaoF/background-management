@@ -21,16 +21,34 @@
           :collapse-transition="false"
         >
           <el-menu-item index="2">
-            <el-icon></el-icon>
+            <el-icon
+              ><svg-icon
+                @click="collapse = false"
+                className="svg-personnel"
+                icon="personnel"
+              ></svg-icon
+            ></el-icon>
             <span>个人中心</span>
           </el-menu-item>
           <el-menu-item index="3">
-            <el-icon></el-icon>
+            <el-icon
+              ><svg-icon
+                @click="collapse = false"
+                className="svg-introduce"
+                icon="introduce "
+              ></svg-icon
+            ></el-icon>
             <span>数据可视化</span>
           </el-menu-item>
           <el-sub-menu index="1">
             <template #title>
-              <el-icon></el-icon>
+              <el-icon
+                ><svg-icon
+                  @click="collapse = false"
+                  className="svg-personnel"
+                  icon="personnel"
+                ></svg-icon
+              ></el-icon>
               <span>用户</span>
             </template>
             <el-menu-item-group>
@@ -42,7 +60,13 @@
 
           <el-sub-menu index="4">
             <template #title>
-              <el-icon><location /></el-icon>
+              <el-icon
+                ><svg-icon
+                  @click="collapse = false"
+                  className="svg-article"
+                  icon="article"
+                ></svg-icon
+              ></el-icon>
               <span>文章</span>
             </template>
             <el-menu-item-group>
@@ -55,15 +79,17 @@
       <el-container>
         <el-header>
           <div class="headone">
-            <el-icon v-if="collapse == true" class="icon"
+            <el-icon v-if="collapse == true"
               ><svg-icon
+                class="icon"
                 @click="collapse = false"
                 className="svg-hamburger-closed"
                 icon="hamburger-closed"
               ></svg-icon
             ></el-icon>
-            <el-icon class="icon"
+            <el-icon
               ><svg-icon
+                class="icon"
                 @click="collapse = true"
                 v-if="collapse == false"
                 className="svg-hamburger-opened"
@@ -86,11 +112,16 @@ const value = reactive({
 })
 </script>
 <style>
+.el-icon {
+  /* margin-right: 10px; */
+  padding-right: 20px !important;
+}
 .icon {
   margin-top: 5px;
-}
-.el-header {
-  padding: 0px !important;
+  /* font-size: 30px; */
+  /* width: 30px; */
+  /* font-size: 30px; */
+  width: 30px;
 }
 .headone {
   width: 10%;
